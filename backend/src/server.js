@@ -10,10 +10,23 @@ dotenv.config();
 
 const app = express();
 
-app.use(cors({
-  origin: "https://authentication-product-crud-kctd-qm6hhm8ux-junaid-8075.vercel.app",
-  credentials: true,
-}));
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://authentication-product-crud-kctd.vercel.app",
+];
+
+app.use(
+  cors({
+    origin: (origin, callback) => {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+    credentials: true,
+  })
+);
 
 app.use(express.json());
 
