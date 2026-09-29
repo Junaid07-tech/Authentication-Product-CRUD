@@ -11,8 +11,8 @@ dotenv.config();
 const app = express();
 
 app.use(cors({
-    origin: "http://localhost:5173",
-    credentials: true,
+  origin: "https://authentication-product-crud-kctd-qm6hhm8ux-junaid-8075.vercel.app",
+  credentials: true,
 }));
 
 app.use(express.json());
